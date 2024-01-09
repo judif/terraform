@@ -1,0 +1,10 @@
+vms:
+  judifvm1:
+    skuName: S0
+    vmName: vm1
+  judifvm2:
+    skuName: S0
+    vmName: vm2
+  judifvm3:
+    skuName: S0
+    vmName: vm3
