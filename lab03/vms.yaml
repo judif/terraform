@@ -1,10 +1,7 @@
 vms:
   judifvm1:
-    skuName: S0
-    vmName: vm1
+    size: Standard_F2
   judifvm2:
-    skuName: S0
-    vmName: vm2
+    size: Standard_F2
   judifvm3:
-    skuName: S0
-    vmName: vm3
+    size: Standard_F2

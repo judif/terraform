@@ -6,7 +6,19 @@ variable "resourceGroupName" {
   type = string
 }
 
-variable "vm-name" {
+variable "size" {
   type = string
   
+}
+
+variable "subnet_id" {
+  type = string
+}
+
+variable "prefix" {
+  type = string
+}
+
+variable "keyVaultId" {
+  type = string
 }

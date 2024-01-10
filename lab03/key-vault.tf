@@ -3,7 +3,6 @@ resource "random_string" "kv" {
   special = false
   upper   = false
   lower   = true
-  number  = false
 }
 
 data "azurerm_client_config" "current" {}

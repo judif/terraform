@@ -3,7 +3,6 @@ resource "random_string" "logs" {
   special = false
   upper   = false
   lower   = true
-  number  = false
 }
 
 resource "azurerm_log_analytics_workspace" "logs" {

@@ -4,32 +4,57 @@ resource "azurerm_resource_group" "demo" {
   location = "westeurope"
 }
 
-locals {
-  databases = {
-    tomdb1 = {
-      skuName = "S0"
-      dbName = "db1"
-    }
-    tomdb2 = {
-      skuName = "S0"
-      dbName = "db2"
-    }
-    tomdb3 = {
-      skuName = "S0"
-      dbName = "db3"
-    }
-  }
-}
+# locals {
+#   databases = {
+#     judifdb1 = {
+#       skuName = "S0"
+#       dbName = "db1"
+#     }
+#     judifdb2 = {
+#       skuName = "S0"
+#       dbName = "db2"
+#     }
+#     judifdb3 = {
+#       skuName = "S0"
+#       dbName = "db3"
+#     }
+#   }
+# }
 
-module "sql" {
-  source            = "./modules/azuresql"
-  for_each          = yamldecode(file("databases.yaml"))["databases"]
-  prefix            = each.key
+# module "sql" {
+#   source            = "./modules/azuresql"
+#   for_each          = yamldecode(file("databases.yaml"))["databases"]
+#   prefix            = each.key
+#   resourceGroupName = azurerm_resource_group.demo.name
+#   location          = azurerm_resource_group.demo.location
+#   keyVaultId        = azurerm_key_vault.kv.id
+#   subnetId          = azurerm_subnet.db.id
+#   dnsZoneId         = azapi_resource.privatednssql.id
+#   dbName            = each.value["dbName"]
+#   skuName           = each.value["skuName"]
+# }
+
+# locals {
+#   vms = {
+#     judifvm1 = {
+#       skuName = "Standard_F2"
+#     }
+#     judifvm2 = {
+#       skuName = "Standard_F2"
+#     }
+#     judifvm3 = {
+#       skuName = "Standard_F2"
+#     }
+#   }
+# }
+
+module "vm" {
+  source            = "./modules/azurewindowsvm"
+  for_each          = yamldecode(file("vms.yaml"))["vms"]
   resourceGroupName = azurerm_resource_group.demo.name
   location          = azurerm_resource_group.demo.location
+  size              = each.value["size"]
+  subnet_id         = azurerm_subnet.vm.id
+  prefix            = each.key 
   keyVaultId        = azurerm_key_vault.kv.id
-  subnetId          = azurerm_subnet.db.id
-  dnsZoneId         = azapi_resource.privatednssql.id
-  dbName            = each.value["dbName"]
-  skuName           = each.value["skuName"]
 }

@@ -4,7 +4,6 @@ resource "random_string" "name" {
   special = false
   upper   = false
   lower   = true
-  number  = false
 }
 
 // Generate random password
@@ -17,7 +16,6 @@ resource "random_password" "password" {
   min_lower        = 1
   upper            = true
   min_upper        = 1
-  number           = true
   min_numeric      = 1
 }
 
