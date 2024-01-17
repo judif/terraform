@@ -1,6 +1,6 @@
 // Resource Group
 resource "azurerm_resource_group" "demo" {
-  name     = "rg-lab03"
+  name     = var.resource_group_name
   location = "westeurope"
 }
 
@@ -48,7 +48,7 @@ resource "azurerm_resource_group" "demo" {
 
 module "vm" {
   source            = "./modules/azurewindowsvm"
-  for_each          = yamldecode(file("vms.yaml"))["vms"]
+  for_each          = yamldecode(file("../../vms.yaml"))["vms"]
   # for_each          = local.vms
   resourceGroupName = azurerm_resource_group.demo.name
   location          = azurerm_resource_group.demo.location
