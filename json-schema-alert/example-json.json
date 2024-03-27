@@ -1,0 +1,60 @@
+{
+    "schemaId": "azureMonitorCommonAlertSchema",
+    "data": {
+      "essentials": {
+        "alertId": "/subscriptions/fasdfasdfasdf/providers/Microsoft.AlertsManagement/alerts/2b407d1a-39c2-9bf0-8ad8-1a2b4c50000e",
+        "alertRule": "Add Users to Group",
+        "severity": "Sev2",
+        "signalType": "Log",
+        "monitorCondition": "Fired",
+        "monitoringService": "Log Alerts V2",
+        "alertTargetIDs": [
+          "/subscriptions/fasdfasdfasdf/resourcegroups/rg-microhack-monitoring/providers/microsoft.operationalinsights/workspaces/law-microhack-321"
+        ],
+        "configurationItems": [
+          "/subscriptions/fasdfasdfasdf/resourcegroups/rg-microhack-monitoring/providers/microsoft.operationalinsights/workspaces/law-microhack-321"
+        ],
+        "originAlertId": "fasdfasdfasdf",
+        "firedDateTime": "2024-03-26T20:30:35.981355Z",
+        "description": "",
+        "essentialsVersion": "1.0",
+        "alertContextVersion": "1.0"
+      },
+      "alertContext": {
+        "properties": {
+          "GroupOperation": "Add member to group",
+          "GroupName": "newValue"
+        },
+        "conditionType": "LogQueryCriteria",
+        "condition": {
+          "windowSize": "PT5M",
+          "allOf": [
+            {
+              "searchQuery": "AuditLogs\n| where OperationName contains \"Add member to group\"\n| where TargetResources has_any (\"group-monitor-contributors\", \"group-monitor-readers\")\n| extend target_prop = parse_json(TargetResources[0])\n| extend GroupName = target_prop.modifiedProperties[1].newValue\n| extend Added = target_prop.userPrincipalName\n| extend prop = parse_json(InitiatedBy)\n| extend Initiator=prop.user.userPrincipalName\n| project Initiator,Added,GroupName,TimeGenerated,OperationName,Category,InitiatedBy,Result",
+              "metricMeasureColumn": null,
+              "targetResourceTypes": "['microsoft.operationalinsights/workspaces']",
+              "operator": "GreaterThan",
+              "threshold": "0",
+              "timeAggregation": "Count",
+              "dimensions": [],
+              "metricValue": 2,
+              "failingPeriods": {
+                "numberOfEvaluationPeriods": 1,
+                "minFailingPeriodsToAlert": 1
+              },
+              "linkToSearchResultsUI": "https://portal.azure.com#@f6adfadsfasdf/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2fasdfasdfasdf%2Fresourcegroups%2Frg-microhack-monitoring%2Fproviders%2Fmicrosoft.operationalinsights%2Fworkspaces%2Flaw-microhack-321%22%7D%5D%7D/q/eJxtkcFqwzAMhu97CpFTB27ZHiCHbocyGFsZZZdRghurqUpsGdmmC%2Bzh54SRZN1utn79n39Z62QoPnMTbr7gckJBePUoOhK7F20RanZRkwtQrI0Bi%2FaAApGhEU6%2BGE07LQ3GNwycpMYAJx0q7TpYFEPj0rKjyLLscUKHlM%2BhUHClCmqDWbjNXPyM6AzEAVx5YQ8leC0Bq3Ngt7h68eNuP3NteuyQv5wTVpYNHQnNNl9QImXf%2FX7l8PKu24STP8%2BK5sqbAspWyNXkdduzp%2Fa%2F6Z7yQKQjmoduFuunylKOxH%2BxWT1jHad%2BNQRS41hqRxY36PpN5fqvlanHXGtYOjULofJHpTZ%2BAw%3D%3D/prettify/1/timespan/2024-03-26T20%3a22%3a35.0000000Z%2f2024-03-26T20%3a27%3a35.0000000Z",
+              "linkToFilteredSearchResultsUI": "https://portal.azure.com#@adfasdf/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2fasdfasdfasdf%2Fresourcegroups%2Frg-microhack-monitoring%2Fproviders%2Fmicrosoft.operationalinsights%2Fworkspaces%2Flaw-microhack-321%22%7D%5D%7D/q/eJxtkcFqwzAMhu97CpFTB27ZHiCHbocyGFsZZZdRghurqUpsGdmmC%2Bzh54SRZN1utn79n39Z62QoPnMTbr7gckJBePUoOhK7F20RanZRkwtQrI0Bi%2FaAApGhEU6%2BGE07LQ3GNwycpMYAJx0q7TpYFEPj0rKjyLLscUKHlM%2BhUHClCmqDWbjNXPyM6AzEAVx5YQ8leC0Bq3Ngt7h68eNuP3NteuyQv5wTVpYNHQnNNl9QImXf%2FX7l8PKu24STP8%2BK5sqbAspWyNXkdduzp%2Fa%2F6Z7yQKQjmoduFuunylKOxH%2BxWT1jHad%2BNQRS41hqRxY36PpN5fqvlanHXGtYOjULofJHpTZ%2BAw%3D%3D/prettify/1/timespan/2024-03-26T20%3a22%3a35.0000000Z%2f2024-03-26T20%3a27%3a35.0000000Z",
+              "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/adfasdfasf/query?query=AuditLogs%0A%7C%20where%20OperationName%20contains%20%22Add%20member%20to%20group%22%0A%7C%20where%20TargetResources%20has_any%20%28%22group-monitor-contributors%22%2C%20%22group-monitor-readers%22%29%0A%7C%20extend%20target_prop%20%3D%20parse_json%28TargetResources%5B0%5D%29%0A%7C%20extend%20GroupName%20%3D%20target_prop.modifiedProperties%5B1%5D.newValue%0A%7C%20extend%20Added%20%3D%20target_prop.userPrincipalName%0A%7C%20extend%20prop%20%3D%20parse_json%28InitiatedBy%29%0A%7C%20extend%20Initiator%3Dprop.user.userPrincipalName%0A%7C%20project%20Initiator%2CAdded%2CGroupName%2CTimeGenerated%2COperationName%2CCategory%2CInitiatedBy%2CResult&timespan=2024-03-26T20%3a22%3a35.0000000Z%2f2024-03-26T20%3a27%3a35.0000000Z",
+              "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/adfasdfasdf/query?query=AuditLogs%0A%7C%20where%20OperationName%20contains%20%22Add%20member%20to%20group%22%0A%7C%20where%20TargetResources%20has_any%20%28%22group-monitor-contributors%22%2C%20%22group-monitor-readers%22%29%0A%7C%20extend%20target_prop%20%3D%20parse_json%28TargetResources%5B0%5D%29%0A%7C%20extend%20GroupName%20%3D%20target_prop.modifiedProperties%5B1%5D.newValue%0A%7C%20extend%20Added%20%3D%20target_prop.userPrincipalName%0A%7C%20extend%20prop%20%3D%20parse_json%28InitiatedBy%29%0A%7C%20extend%20Initiator%3Dprop.user.userPrincipalName%0A%7C%20project%20Initiator%2CAdded%2CGroupName%2CTimeGenerated%2COperationName%2CCategory%2CInitiatedBy%2CResult&timespan=2024-03-26T20%3a22%3a35.0000000Z%2f2024-03-26T20%3a27%3a35.0000000Z",
+              "event": null
+            }
+          ],
+          "windowStartTime": "2024-03-26T20:22:35Z",
+          "windowEndTime": "2024-03-26T20:27:35Z"
+        }
+      },
+      "customProperties": {
+        "GroupOperation": "Add member to group"
+      }
+    }
+  }
